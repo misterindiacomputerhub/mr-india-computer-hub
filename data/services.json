@@ -1,0 +1,62 @@
+{
+  "categories": [
+    {
+      "category": "Computer & Laptop Repair",
+      "topics": [
+        {"id": "screen_replacement", "title_seed": "Laptop screen replacement", "angle": "tip"},
+        {"id": "ram_upgrade", "title_seed": "RAM upgrade for slow laptops", "angle": "explainer"},
+        {"id": "virus_removal", "title_seed": "Virus removal & cleanup", "angle": "tip"},
+        {"id": "data_recovery", "title_seed": "Data recovery from crashed drives", "angle": "explainer"},
+        {"id": "os_reinstall", "title_seed": "Windows reinstall / formatting", "angle": "tip"}
+      ]
+    },
+    {
+      "category": "Printer Services",
+      "topics": [
+        {"id": "printer_setup", "title_seed": "New printer setup", "angle": "tip"},
+        {"id": "printer_troubleshoot", "title_seed": "Common printer problems fixed", "angle": "tip"},
+        {"id": "wifi_printer", "title_seed": "Wi-Fi printer configuration", "angle": "explainer"}
+      ]
+    },
+    {
+      "category": "CCTV & Security",
+      "topics": [
+        {"id": "cctv_install", "title_seed": "CCTV installation for shops", "angle": "explainer"},
+        {"id": "dvr_nvr_setup", "title_seed": "DVR/NVR setup basics", "angle": "explainer"}
+      ]
+    },
+    {
+      "category": "Cyber Cafe & Government Services",
+      "topics": [
+        {"id": "pan_card", "title_seed": "How to apply for a PAN card", "angle": "govt_guide"},
+        {"id": "aadhaar_update", "title_seed": "Aadhaar update process", "angle": "govt_guide"},
+        {"id": "gst_registration", "title_seed": "GST registration basics", "angle": "govt_guide"},
+        {"id": "itr_filing", "title_seed": "ITR filing for small business owners", "angle": "govt_guide"},
+        {"id": "passport_apply", "title_seed": "Passport application help", "angle": "govt_guide"}
+      ]
+    },
+    {
+      "category": "Networking",
+      "topics": [
+        {"id": "wifi_setup", "title_seed": "Home/office Wi-Fi setup", "angle": "tip"},
+        {"id": "router_config", "title_seed": "Router configuration basics", "angle": "tip"},
+        {"id": "vpn_setup", "title_seed": "VPN setup for remote work", "angle": "explainer"}
+      ]
+    },
+    {
+      "category": "Accessories",
+      "topics": [
+        {"id": "ssd_upgrade", "title_seed": "SSD upgrade — why and how", "angle": "product_review"},
+        {"id": "keyboard_mouse", "title_seed": "Keyboard & mouse recommendations", "angle": "product_review"}
+      ]
+    },
+    {
+      "category": "Photography",
+      "topics": [
+        {"id": "wedding_photo", "title_seed": "Wedding photography services", "angle": "showcase"},
+        {"id": "event_photo", "title_seed": "Event photography services", "angle": "showcase"},
+        {"id": "drone_photo", "title_seed": "Drone photography for events", "angle": "showcase"}
+      ]
+    }
+  ]
+}

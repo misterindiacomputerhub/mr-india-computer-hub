@@ -1,0 +1,9 @@
+token.json
+client_secret.json
+*.db
+__pycache__/
+*.log
+voice_samples/
+generated_media/
+.env
+output/

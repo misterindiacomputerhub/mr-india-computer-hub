@@ -1,0 +1,5 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-f', 'Dockerfile.worker', '-t', 'asia-south1-docker.pkg.dev/mich-123/mr-india/worker', '.']
+images:
+  - 'asia-south1-docker.pkg.dev/mich-123/mr-india/worker'

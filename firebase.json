@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "rewrites": [
+      {
+        "source": "**",
+        "run": {
+          "serviceId": "mr-india-dashboard",
+          "region": "asia-south1"
+        }
+      }
+    ]
+  }
+}

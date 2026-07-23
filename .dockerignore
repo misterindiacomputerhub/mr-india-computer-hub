@@ -1,0 +1,22 @@
+# Secrets — these must NEVER be baked into a container image (images are
+# often more widely shared/cached than you expect). Inject them at runtime
+# via Secret Manager instead — see deploy.sh.
+.env
+client_secret.json
+token.json
+
+# VCS / OS cruft
+.git
+.gitignore
+.DS_Store
+**/.DS_Store
+__pycache__
+**/__pycache__
+*.pyc
+
+# Local dev artifacts — regenerated at runtime, don't need to ship in the image
+output/
+generated_media/
+local_cache.db
+pipeline.db
+scheduler.log

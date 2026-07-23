@@ -1,0 +1,29 @@
+# Worker image: runs the content pipeline (script -> title -> TTS -> video -> upload)
+# Built for Cloud Run Jobs (one execution per invocation, triggered hourly by Cloud Scheduler).
+FROM python:3.11-slim
+
+# ffmpeg is required by moviepy for video rendering/muxing.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ffmpeg \
+    imagemagick \
+    && rm -rf /var/lib/apt/lists/*
+RUN find /etc -iname "policy.xml" -path "*ImageMagick*" -exec sed -i -e 's/rights="none" pattern="@\*"/rights="read|write" pattern="@*"/' -e 's/rights="none" pattern="PDF"/rights="read|write" pattern="PDF"/' {} \; && (cat /etc/ImageMagick-7/policy.xml | grep -i "@\|PDF" || echo "policy check done")
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+# Cloud Run Jobs writes to a read-only filesystem except /tmp unless you
+# mount a volume. Point output/media paths at /tmp (ephemeral is fine here,
+# since finished videos are uploaded to YouTube and don't need to persist
+# in the container after the run).
+ENV OUTPUT_DIR=/tmp/output
+ENV MEDIA_LIBRARY_DIR=/app/media_library
+
+# worker_once.py runs one scheduler pass (poll stats + maybe generate one
+# video) and exits — the right shape for a Cloud Run Job triggered on a
+# Cloud Scheduler cron, instead of a process that sleeps forever.
+CMD ["python", "worker_once.py"]
