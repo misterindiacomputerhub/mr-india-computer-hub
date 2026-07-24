@@ -17,7 +17,7 @@ import traceback
 from dotenv import load_dotenv
 
 import database as db
-from agents import script_agent, title_agent, tts_agent, video_agent, upload_agent
+from agents import script_agent, title_agent, tts_agent, video_agent, upload_agent, seo_agent
 
 load_dotenv()
 
@@ -61,24 +61,9 @@ def run_one_topic(topic: dict) -> str | None:
         db.update_video(video_id, status="rendered")
 
         # 5. Upload
-        contact_lines = []
-        if os.getenv("SHOP_PHONE"):
-            contact_lines.append(f"📞 Call: {os.getenv('SHOP_PHONE')}")
-        if os.getenv("SHOP_MAPS_LINK"):
-            contact_lines.append(f"📍 Location: {os.getenv('SHOP_MAPS_LINK')}")
-        if os.getenv("SHOP_INSTAGRAM"):
-            contact_lines.append(f"📸 Instagram: {os.getenv('SHOP_INSTAGRAM')}")
-        if os.getenv("SHOP_FACEBOOK"):
-            contact_lines.append(f"📘 Facebook: {os.getenv('SHOP_FACEBOOK')}")
-        contact_block = "\n".join(contact_lines)
-
-        description = (
-            f"{script_text}\n\n"
-            f"{os.getenv('SHOP_CTA', '')}\n\n"
-            f"{contact_block}"
-        ).strip()
+        seo = seo_agent.generate_seo_checked(topic["title_seed"], keyword=topic.get("category", ""))
         youtube_id = upload_agent.upload_video(
-            video_path, best["title"], description, tags=[topic["category"], SHOP_NAME]
+            video_path, best["title"], seo["description"], tags=seo["tags"]
         )
         db.update_video(video_id, status="uploaded", youtube_video_id=youtube_id,
                          uploaded_at=__import__("datetime").datetime.now(
